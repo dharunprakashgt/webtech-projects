@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent & Utility Expense Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-600 text-white p-4 shadow-md">
+        <nav class="container mx-auto flex justify-between">
+            <h1 class="text-xl font-bold">Expense Tracker</h1>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="hover:underline">Home</a></li>
+                <li><a href="add expencess.html" class="hover:underline">Add Expense</a></li>
+                <li><a href="view expencess.html" class="hover:underline">View Expenses</a></li>
+                <li><a href="reports.html" class="hover:underline">Reports</a></li>
+                <li><a href="login page.html" class="hover:underline">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-4">Welcome to Rent & Utility Expense Tracker</h1>
+        <div class="flex justify-between text-lg">
+            <p>Total Expenses: <span id="total-expenses" class="font-semibold text-red-500">$0</span></p>
+            <p>Upcoming Payments: <span id="upcoming-payments" class="font-semibold text-green-500">$0</span></p>
+        </div>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+</html>

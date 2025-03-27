@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Expenses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-600 text-white p-4 shadow-md">
+        <nav class="container mx-auto flex justify-between">
+            <h1 class="text-xl font-bold">Expense Tracker</h1>
+            <ul class="flex space-x-4">
+                <li><a href="main.html" class="hover:underline">Home</a></li>
+                <li><a href="add expencess.html" class="hover:underline">Add Expense</a></li>
+                <li><a href="reports.html" class="hover:underline">Reports</a></li>
+                <li><a href="login page.html" class="hover:underline">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-4">Expense List</h1>
+        <table class="w-full border-collapse border border-gray-300">
+            <thead>
+                <tr class="bg-blue-500 text-white">
+                    <th class="border p-2">Category</th>
+                    <th class="border p-2">Amount ($)</th>
+                    <th class="border p-2">Due Date</th>
+                    <th class="border p-2">Status</th>
+                    <th class="border p-2">Action</th>
+                </tr>
+            </thead>
+            <tbody id="expense-table">
+                <!-- Expenses will be displayed here -->
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get expenses from local storage
+            let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+
+            // Get table body
+            const tableBody = document.getElementById('expense-table');
+
+            // Function to update table after removing an expense
+            function updateTable() {
+                tableBody.innerHTML = "";
+                expenses.forEach((expense, index) => {
+                    const row = document.createElement('tr');
+
+                    row.innerHTML = `
+                        <td class="border p-2">${expense.category}</td>
+                        <td class="border p-2">$${expense.amount}</td>
+                        <td class="border p-2">${expense.dueDate}</td>
+                        <td class="border p-2 ${expense.status === 'Unpaid' ? 'text-red-500' : 'text-green-500'}">${expense.status}</td>
+                        <td class="border p-2">
+                            <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700" onclick="removeExpense(${index})">Remove</button>
+                        </td>
+                    `;
+
+                    tableBody.appendChild(row);
+                });
+            }
+
+            // Function to remove an expense
+            window.removeExpense = function(index) {
+                expenses.splice(index, 1); // Remove the selected expense
+                localStorage.setItem('expenses', JSON.stringify(expenses)); // Update local storage
+                updateTable(); // Refresh the table
+            };
+
+            // Load existing expenses
+            updateTable();
+        });
+    </script>
+</body>
+</html>
